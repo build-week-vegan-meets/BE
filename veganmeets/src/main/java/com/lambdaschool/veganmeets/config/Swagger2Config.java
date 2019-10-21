@@ -12,7 +12,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-// http://localhost:2019/swagger-ui.html
+// s
 @Configuration
 @EnableSwagger2
 public class Swagger2Config
@@ -33,8 +33,8 @@ public class Swagger2Config
     private ApiInfo apiEndPointsInfo()
     {
         return new ApiInfoBuilder().title("Java Build Week Vegan Meets")
-                                   .description("A Place for vegan's to eat outside of their own kitchen")
-                                   .contact(new Contact("Shelby Diamond", "http://www.lambdaschool.com", "shelbydiamond518@gmail.com"))
+                                   .description("A Place for vegan's to eat outside of their own kitchen.")
+                                   .contact(new Contact("Shelby Diamond", "http://www.shelbydiamond.design", "shelbydiamond518@gmail.com"))
                                    .license("MIT")
                                    .licenseUrl("https://github.com/LambdaSchool/java-starthere/blob/master/LICENSE")
                                    .version("1.0.0")
