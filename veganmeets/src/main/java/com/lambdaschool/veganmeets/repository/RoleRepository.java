@@ -1,6 +1,5 @@
 package com.lambdaschool.veganmeets.repository;
 
-import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.view.JustTheCount;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

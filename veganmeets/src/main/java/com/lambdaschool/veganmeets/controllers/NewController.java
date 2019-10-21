@@ -1,8 +1,6 @@
 package com.lambdaschool.veganmeets.controllers;
 
-import com.lambdaschool.veganmeets.models.User;
-import com.lambdaschool.veganmeets.models.UserRoles;
-import com.lambdaschool.veganmeets.services.RoleService;
+import com.lambdaschool.veganmeets.models.Resturant;
 import com.lambdaschool.veganmeets.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,36 +25,32 @@ import java.util.ArrayList;
 // client then goes to login end point
 
 @RestController
-public class OpenController
+public class NewController
 {
-    private static final Logger logger = LoggerFactory.getLogger(OpenController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResturantController.class);
 
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RoleService roleService;
-
-    @PostMapping(value = "/createnewuser",
+    @PostMapping(value = "/createnewresturant",
                  consumes = {"application/json"},
                  produces = {"application/json"})
-    public ResponseEntity<?> addNewUser(HttpServletRequest request, @Valid
+    public ResponseEntity<?> addNewResturant(HttpServletRequest request, @Valid
     @RequestBody
-            User newuser) throws URISyntaxException
+            Resturant newresturant) throws URISyntaxException
     {
         logger.trace(request.getMethod()
                             .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        ArrayList<UserRoles> newRoles = new ArrayList<>();
-        newRoles.add(new UserRoles(newuser, roleService.findByName("user")));
-        newuser.setUserroles(newRoles);
 
-        newuser = userService.save(newuser);
+
+        // ** TODO addresturantfucntions
+
 
         // set the location header for the newly created resource - to another controller!
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newRestaurantURI = ServletUriComponentsBuilder.fromUriString(request.getServerName() + ":" + request.getLocalPort() + "/users/user/{userId}")
-                                                          .buildAndExpand(newuser.getUserid())
+        URI newRestaurantURI = ServletUriComponentsBuilder.fromUriString(request.getServerName() + ":" + request.getLocalPort() + "/resturants/resturant/resturantid")
+                                                          .buildAndExpand(newresturant.getResturantid())
                                                           .toUri();
         responseHeaders.setLocation(newRestaurantURI);
 

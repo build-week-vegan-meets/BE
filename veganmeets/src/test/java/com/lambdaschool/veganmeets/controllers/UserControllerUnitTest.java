@@ -1,9 +1,7 @@
 package com.lambdaschool.veganmeets.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
-import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.models.Useremail;
 import com.lambdaschool.veganmeets.services.UserService;
 import org.junit.After;
