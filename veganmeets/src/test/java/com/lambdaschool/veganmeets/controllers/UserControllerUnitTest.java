@@ -46,19 +46,8 @@ public class UserControllerUnitTest
     {
         userList = new ArrayList<>();
 
-        Role r1 = new Role("admin");
-        r1.setRoleid(1);
-        Role r2 = new Role("user");
-        r2.setRoleid(2);
-        Role r3 = new Role("data");
-        r3.setRoleid(3);
-
         // admin, data, user
-        ArrayList<UserRoles> admins = new ArrayList<>();
-        admins.add(new UserRoles(new User(), r1));
-        admins.add(new UserRoles(new User(), r2));
-        admins.add(new UserRoles(new User(), r3));
-        User u1 = new User("admin", "ILuvM4th!", admins);
+        User u1 = new User("admin", "ILuvM4th!");
 
         u1.getUseremails()
           .add(new Useremail(u1, "admin@email.local"));
@@ -72,10 +61,7 @@ public class UserControllerUnitTest
         userList.add(u1);
 
         // data, user
-        ArrayList<UserRoles> datas = new ArrayList<>();
-        datas.add(new UserRoles(new User(), r3));
-        datas.add(new UserRoles(new User(), r2));
-        User u2 = new User("cinnamon", "1234567", datas);
+        User u2 = new User("cinnamon", "1234567");
 
         u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.local"));
@@ -93,9 +79,7 @@ public class UserControllerUnitTest
         userList.add(u2);
 
         // user
-        ArrayList<UserRoles> users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r1));
-        User u3 = new User("testingbarn", "ILuvM4th!", users);
+        User u3 = new User("testingbarn", "ILuvM4th!");
 
         u3.getUseremails()
           .add(new Useremail(u3, "barnbarn@email.local"));
@@ -104,15 +88,11 @@ public class UserControllerUnitTest
         u3.setUserid(103);
         userList.add(u3);
 
-        users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r2));
-        User u4 = new User("testingcat", "password", users);
+        User u4 = new User("testingcat", "password");
         u4.setUserid(104);
         userList.add(u4);
 
-        users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r2));
-        User u5 = new User("testingdog", "password", users);
+        User u5 = new User("testingdog", "password");
         u5.setUserid(105);
         userList.add(u5);
 
@@ -223,13 +203,11 @@ public class UserControllerUnitTest
         String apiUrl = "/users/user";
 
         // build a restaurant
-        ArrayList<UserRoles> thisRole = new ArrayList<>();
         ArrayList<Useremail> thisEmail = new ArrayList<>();
         User u1 = new User();
         u1.setUserid(100);
         u1.setUsername("tiger");
         u1.setPassword("ILuvM4th!");
-        u1.setUserroles(thisRole);
         u1.setUseremails(thisEmail);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -250,7 +228,6 @@ public class UserControllerUnitTest
         String apiUrl = "/users/user/{userid}";
 
         // build a restaurant
-        ArrayList<UserRoles> thisRole = new ArrayList<>();
         ArrayList<Useremail> thisEmail = new ArrayList<>();
         User u1 = new User();
         u1.setUserid(100);
@@ -297,8 +274,8 @@ public class UserControllerUnitTest
 
     // @PostMapping("/user/{userid}/role/{roleid}")
     // userService.addUserRole(userid, roleid);
-    @Test
-    public void postUserRoleByIds()
-    {
-    }
+//    @Test
+//    public void postUserRoleByIds()
+//    {
+//    }
 }

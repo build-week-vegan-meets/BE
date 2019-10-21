@@ -20,10 +20,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-// in order to return an auth token
-// client goes to this end point
-// client then goes to login end point
-
 @RestController
 public class NewController
 {

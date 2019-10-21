@@ -106,8 +106,7 @@ public class UserServiceImplUnitTest
     @Test
     public void F_save()
     {
-        ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("tiger", "ILuvMath!", datas);
+        User u2 = new User("tiger", "ILuvMath!");
         u2.getUseremails()
           .add(new Useremail(u2, "tiger@tiger.local"));
 
@@ -123,8 +122,7 @@ public class UserServiceImplUnitTest
     @Test (expected = ResourceFoundException.class)
     public void FA_saveResourceFound()
     {
-        ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "ILuvMath!", datas);
+        User u2 = new User("cinnamon", "ILuvMath!");
         u2.getUseremails()
           .add(new Useremail(u2, "tiger@tiger.local"));
 
@@ -142,8 +140,7 @@ public class UserServiceImplUnitTest
     @Test
     public void G_update()
     {
-        ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "password", datas);
+        User u2 = new User("cinnamon", "password");
         u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
@@ -169,12 +166,8 @@ public class UserServiceImplUnitTest
     @Test (expected = ResourceFoundException.class)
     public void GA_updateWithUserRole()
     {
-        Role r2 = new Role("user");
-
-        ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "password", datas);
-        datas.add(new UserRoles(u2, r2));
-        u2.getUseremails()
+        User u2 = new User("cinnamon", "password");
+            u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
           .add(new Useremail(u2, "hops@mymail.thump"));
@@ -199,10 +192,7 @@ public class UserServiceImplUnitTest
     @Test (expected = ResourceNotFoundException.class)
     public void GB_updateNotCurrentUserNorAdmin()
     {
-        Role r2 = new Role("user");
-
-        ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "password", datas);
+        User u2 = new User("cinnamon", "password");
         u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
