@@ -14,9 +14,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableJpaAuditing
 @SpringBootApplication
-public class VeganmeetsApplication
+public class VeganMeetsApplication
 {
-    private static final Logger logger = LoggerFactory.getLogger(com.lambdaschool.veganmeets.VeganmeetsApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(VeganMeetsApplication.class);
     private static boolean stop = false;
 
     @Autowired
@@ -38,7 +38,8 @@ public class VeganmeetsApplication
 
         if (!stop)
         {
-            ApplicationContext ctx = SpringApplication.run(com.lambdaschool.veganmeets.VeganmeetsApplication.class, args);
+            ApplicationContext ctx = SpringApplication.run(VeganMeetsApplication.class,
+                    args);
 
             DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
             dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);

@@ -6,7 +6,7 @@ import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
 import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.models.Useremail;
-import com.lambdaschool.veganmeets.VeganmeetsApplication;
+import com.lambdaschool.veganmeets.VeganMeetsApplication;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -30,7 +30,7 @@ import static junit.framework.TestCase.assertEquals;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = VeganmeetsApplication.class)
+@SpringBootTest(classes = VeganMeetsApplication.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserServiceImplUnitTest
 {
