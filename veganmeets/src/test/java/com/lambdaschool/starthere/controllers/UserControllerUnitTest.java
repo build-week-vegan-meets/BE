@@ -1,7 +1,9 @@
 package com.lambdaschool.veganmeets.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
+import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.models.Useremail;
 import com.lambdaschool.veganmeets.services.UserService;
 import org.junit.After;
@@ -46,8 +48,19 @@ public class UserControllerUnitTest
     {
         userList = new ArrayList<>();
 
+        Role r1 = new Role("admin");
+        r1.setRoleid(1);
+        Role r2 = new Role("user");
+        r2.setRoleid(2);
+        Role r3 = new Role("data");
+        r3.setRoleid(3);
+
         // admin, data, user
-        User u1 = new User("admin", "ILuvM4th!");
+        ArrayList<UserRoles> admins = new ArrayList<>();
+        admins.add(new UserRoles(new User(), r1));
+        admins.add(new UserRoles(new User(), r2));
+        admins.add(new UserRoles(new User(), r3));
+        User u1 = new User("admin", "ILuvM4th!", admins);
 
         u1.getUseremails()
           .add(new Useremail(u1, "admin@email.local"));
@@ -61,7 +74,10 @@ public class UserControllerUnitTest
         userList.add(u1);
 
         // data, user
-        User u2 = new User("cinnamon", "1234567");
+        ArrayList<UserRoles> datas = new ArrayList<>();
+        datas.add(new UserRoles(new User(), r3));
+        datas.add(new UserRoles(new User(), r2));
+        User u2 = new User("cinnamon", "1234567", datas);
 
         u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.local"));
@@ -79,7 +95,9 @@ public class UserControllerUnitTest
         userList.add(u2);
 
         // user
-        User u3 = new User("testingbarn", "ILuvM4th!");
+        ArrayList<UserRoles> users = new ArrayList<>();
+        users.add(new UserRoles(new User(), r1));
+        User u3 = new User("testingbarn", "ILuvM4th!", users);
 
         u3.getUseremails()
           .add(new Useremail(u3, "barnbarn@email.local"));
@@ -88,11 +106,15 @@ public class UserControllerUnitTest
         u3.setUserid(103);
         userList.add(u3);
 
-        User u4 = new User("testingcat", "password");
+        users = new ArrayList<>();
+        users.add(new UserRoles(new User(), r2));
+        User u4 = new User("testingcat", "password", users);
         u4.setUserid(104);
         userList.add(u4);
 
-        User u5 = new User("testingdog", "password");
+        users = new ArrayList<>();
+        users.add(new UserRoles(new User(), r2));
+        User u5 = new User("testingdog", "password", users);
         u5.setUserid(105);
         userList.add(u5);
 
@@ -203,11 +225,13 @@ public class UserControllerUnitTest
         String apiUrl = "/users/user";
 
         // build a restaurant
+        ArrayList<UserRoles> thisRole = new ArrayList<>();
         ArrayList<Useremail> thisEmail = new ArrayList<>();
         User u1 = new User();
         u1.setUserid(100);
         u1.setUsername("tiger");
         u1.setPassword("ILuvM4th!");
+        u1.setUserroles(thisRole);
         u1.setUseremails(thisEmail);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -228,6 +252,7 @@ public class UserControllerUnitTest
         String apiUrl = "/users/user/{userid}";
 
         // build a restaurant
+        ArrayList<UserRoles> thisRole = new ArrayList<>();
         ArrayList<Useremail> thisEmail = new ArrayList<>();
         User u1 = new User();
         u1.setUserid(100);
@@ -274,8 +299,8 @@ public class UserControllerUnitTest
 
     // @PostMapping("/user/{userid}/role/{roleid}")
     // userService.addUserRole(userid, roleid);
-//    @Test
-//    public void postUserRoleByIds()
-//    {
-//    }
+    @Test
+    public void postUserRoleByIds()
+    {
+    }
 }

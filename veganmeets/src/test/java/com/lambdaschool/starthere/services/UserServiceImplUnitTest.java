@@ -1,10 +1,14 @@
 package com.lambdaschool.veganmeets.services;
 
+    import com.lambdaschool.veganmeets.VeganMeetsApplication;
+import com.lambdaschool.veganmeets.VeganMeetsApplication;
 import com.lambdaschool.veganmeets.exceptions.ResourceFoundException;
 import com.lambdaschool.veganmeets.exceptions.ResourceNotFoundException;
+import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
+import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.models.Useremail;
-import com.lambdaschool.veganmeets.VeganMeetsApplication;
+import com.lambdaschool.veganmeets.services.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -106,7 +110,8 @@ public class UserServiceImplUnitTest
     @Test
     public void F_save()
     {
-        User u2 = new User("tiger", "ILuvMath!");
+        ArrayList<UserRoles> datas = new ArrayList<>();
+        User u2 = new User("tiger", "ILuvMath!", datas);
         u2.getUseremails()
           .add(new Useremail(u2, "tiger@tiger.local"));
 
@@ -122,7 +127,8 @@ public class UserServiceImplUnitTest
     @Test (expected = ResourceFoundException.class)
     public void FA_saveResourceFound()
     {
-        User u2 = new User("cinnamon", "ILuvMath!");
+        ArrayList<UserRoles> datas = new ArrayList<>();
+        User u2 = new User("cinnamon", "ILuvMath!", datas);
         u2.getUseremails()
           .add(new Useremail(u2, "tiger@tiger.local"));
 
@@ -140,7 +146,8 @@ public class UserServiceImplUnitTest
     @Test
     public void G_update()
     {
-        User u2 = new User("cinnamon", "password");
+        ArrayList<UserRoles> datas = new ArrayList<>();
+        User u2 = new User("cinnamon", "password", datas);
         u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
@@ -166,8 +173,12 @@ public class UserServiceImplUnitTest
     @Test (expected = ResourceFoundException.class)
     public void GA_updateWithUserRole()
     {
-        User u2 = new User("cinnamon", "password");
-            u2.getUseremails()
+        Role r2 = new Role("user");
+
+        ArrayList<UserRoles> datas = new ArrayList<>();
+        User u2 = new User("cinnamon", "password", datas);
+        datas.add(new UserRoles(u2, r2));
+        u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
           .add(new Useremail(u2, "hops@mymail.thump"));
@@ -192,7 +203,10 @@ public class UserServiceImplUnitTest
     @Test (expected = ResourceNotFoundException.class)
     public void GB_updateNotCurrentUserNorAdmin()
     {
-        User u2 = new User("cinnamon", "password");
+        Role r2 = new Role("user");
+
+        ArrayList<UserRoles> datas = new ArrayList<>();
+        User u2 = new User("cinnamon", "password", datas);
         u2.getUseremails()
           .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
