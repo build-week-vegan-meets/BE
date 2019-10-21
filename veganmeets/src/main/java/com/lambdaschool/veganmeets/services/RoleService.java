@@ -1,7 +1,5 @@
 package com.lambdaschool.veganmeets.services;
 
-import com.lambdaschool.veganmeets.models.Role;
-
 import java.util.List;
 
 // Note role does not have an update. Changing the spelling of the role impacts resource access so is BIG DEAL!

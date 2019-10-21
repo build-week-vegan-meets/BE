@@ -19,9 +19,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/useremails")
-public class UseremailController
+public class EditController
 {
-    private static final Logger logger = LoggerFactory.getLogger(UseremailController.class);
+    private static final Logger logger = LoggerFactory.getLogger(EditController.class);
 
     @Autowired
     UseremailService useremailService;

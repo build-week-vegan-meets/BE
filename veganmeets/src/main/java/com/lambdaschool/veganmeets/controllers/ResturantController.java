@@ -18,16 +18,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/otherapis")
-public class APIsController
+public class ResturantController
 {
-    private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResturantController.class);
     private RestTemplate restTemplate = new RestTemplate();
-
-    // taken from https://openlibrary.org/dev/docs/api/books
-    // returns a list of books - you can include multiple ISBNs in a single request
-    // This API returns a map instead of the standard list
-    //
-    // localhost:2019/otherapis/openlibrary/0982477562
 
     @GetMapping(value = "/openlibrary/{isbn}",
                 produces = {"application/json"})

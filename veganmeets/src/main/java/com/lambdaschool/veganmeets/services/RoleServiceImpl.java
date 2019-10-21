@@ -1,9 +1,7 @@
 package com.lambdaschool.veganmeets.services;
 
 import com.lambdaschool.veganmeets.exceptions.ResourceNotFoundException;
-import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
-import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.repository.RoleRepository;
 import com.lambdaschool.veganmeets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
