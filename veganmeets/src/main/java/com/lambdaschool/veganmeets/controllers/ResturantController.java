@@ -1,6 +1,7 @@
 package com.lambdaschool.veganmeets.controllers;
 
 import com.lambdaschool.veganmeets.models.APIOpenLibrary;
+import com.lambdaschool.veganmeets.models.Resturant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
@@ -17,33 +18,31 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/otherapis")
+@RequestMapping("/resturants")
 public class ResturantController
 {
     private static final Logger logger = LoggerFactory.getLogger(ResturantController.class);
     private RestTemplate restTemplate = new RestTemplate();
 
-    @GetMapping(value = "/openlibrary/{isbn}",
+    @GetMapping(value = "/{resturantid}",
                 produces = {"application/json"})
-    public ResponseEntity<?> listABookGivenISBN(HttpServletRequest request,
+    public ResponseEntity<?> ListAResturantByID(HttpServletRequest request,
                                                 @PathVariable
-                                                        String isbn)
+                                                        String resturantid)
     {
         logger.trace(request.getMethod()
                             .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        String requestURL = "https://openlibrary.org/api/books?bibkeys=" + "ISBN:" + isbn + "&format=json";
+        String requestURL = "http://localhost:2019/resturants" + resturantid + "&format=json";
 
-        ParameterizedTypeReference<Map<String, APIOpenLibrary>> responseType = new ParameterizedTypeReference<Map<String, APIOpenLibrary>>()
+        ParameterizedTypeReference<Map<String, Resturant>> responseType = new ParameterizedTypeReference<Map<String, Resturant>>()
         {
         };
-        ResponseEntity<Map<String, APIOpenLibrary>> responseEntity = restTemplate.exchange(requestURL, HttpMethod.GET, null, responseType);
+        ResponseEntity<Map<String, Resturant>> responseEntity = restTemplate.exchange(requestURL, HttpMethod.GET, null, responseType);
 
-        Map<String, APIOpenLibrary> ourBooks = responseEntity.getBody();
+        Map<String, Resturant> ourResturant = responseEntity.getBody();
 
-        // goodreads
-
-        System.out.println(ourBooks);
-        return new ResponseEntity<>(ourBooks, HttpStatus.OK);
+        System.out.println(ourResturant);
+        return new ResponseEntity<>(ourResturant, HttpStatus.OK);
     }
 }
