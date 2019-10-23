@@ -1,48 +1,41 @@
 package com.lambdaschool.veganmeets.controllers;
 
-import com.lambdaschool.veganmeets.models.APIOpenLibrary;
 import com.lambdaschool.veganmeets.models.Resturant;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+import com.lambdaschool.veganmeets.services.ResturantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/resturants")
-public class ResturantController
-{
-    private static final Logger logger = LoggerFactory.getLogger(ResturantController.class);
-    private RestTemplate restTemplate = new RestTemplate();
+public class ResturantController {
 
-    @GetMapping(value = "/{resturantid}",
-                produces = {"application/json"})
-    public ResponseEntity<?> ListAResturantByID(HttpServletRequest request,
-                                                @PathVariable
-                                                        String resturantid)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
+    @Autowired
+    private ResturantService resturantService;
 
-        String requestURL = "http://localhost:2019/resturants" + resturantid + "&format=json";
+    @RequestMapping(method = RequestMethod.GET)
+    public Collection<Resturant> getAllResturants(){
+        return resturantService.getAllResturants();
+    }
 
-        ParameterizedTypeReference<Map<String, Resturant>> responseType = new ParameterizedTypeReference<Map<String, Resturant>>()
-        {
-        };
-        ResponseEntity<Map<String, Resturant>> responseEntity = restTemplate.exchange(requestURL, HttpMethod.GET, null, responseType);
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public Resturant getResturantById(@PathVariable("id") int id){
+        return resturantService.getResturantById(id);
+    }
 
-        Map<String, Resturant> ourResturant = responseEntity.getBody();
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public void deleteResturantById(@PathVariable("id") int id){
+        resturantService.removeResturantById(id);
+    }
 
-        System.out.println(ourResturant);
-        return new ResponseEntity<>(ourResturant, HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.PUT)
+    public void updateResturant(@RequestBody Resturant resturant){
+        resturantService.updateResturant(resturant);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void insertResturant (@RequestBody Resturant resturant){
+        resturantService.insertResturant(resturant);
     }
 }

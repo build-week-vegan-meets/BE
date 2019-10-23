@@ -7,6 +7,8 @@
 
 > Share with others the great Vegan food you find! You can upload an image, share a new resturant, and more!
 
+
+
 ## Author
 
 :grinning: **Shelby Diamond**
