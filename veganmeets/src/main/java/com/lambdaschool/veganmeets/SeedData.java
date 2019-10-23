@@ -1,6 +1,8 @@
 package com.lambdaschool.veganmeets;
 
+import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
+import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.models.Useremail;
 import com.lambdaschool.veganmeets.services.RoleService;
 import com.lambdaschool.veganmeets.services.UserService;
@@ -40,9 +42,9 @@ public class SeedData implements CommandLineRunner
         admins.add(new UserRoles(new User(), r3));
         User u1 = new User("admin", "password", admins);
         u1.getUseremails()
-          .add(new Useremail(u1, "admin@email.local"));
+                .add(new Useremail(u1, "admin@email.local"));
         u1.getUseremails()
-          .add(new Useremail(u1, "admin@mymail.local"));
+                .add(new Useremail(u1, "admin@mymail.local"));
 
         userService.save(u1);
 
@@ -52,11 +54,11 @@ public class SeedData implements CommandLineRunner
         datas.add(new UserRoles(new User(), r2));
         User u2 = new User("cinnamon", "1234567", datas);
         u2.getUseremails()
-          .add(new Useremail(u2, "cinnamon@mymail.local"));
+                .add(new Useremail(u2, "cinnamon@mymail.local"));
         u2.getUseremails()
-          .add(new Useremail(u2, "hops@mymail.local"));
+                .add(new Useremail(u2, "hops@mymail.local"));
         u2.getUseremails()
-          .add(new Useremail(u2, "bunny@email.local"));
+                .add(new Useremail(u2, "bunny@email.local"));
         userService.save(u2);
 
         // user
@@ -64,7 +66,7 @@ public class SeedData implements CommandLineRunner
         users.add(new UserRoles(new User(), r2));
         User u3 = new User("barnbarn", "ILuvM4th!", users);
         u3.getUseremails()
-          .add(new Useremail(u3, "barnbarn@email.local"));
+                .add(new Useremail(u3, "barnbarn@email.local"));
         userService.save(u3);
 
         users = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.lambdaschool.veganmeets.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -27,8 +28,13 @@ public class User extends Auditable
     private String password;
 
     @OneToMany(mappedBy = "user",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
+            cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<UserRoles> userroles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JsonIgnoreProperties("user")
     private List<Useremail> useremails = new ArrayList<>();
 
@@ -36,10 +42,15 @@ public class User extends Auditable
     {
     }
 
-    public User(String username, String password)
+    public User(String username, String password, List<UserRoles> userRoles)
     {
         setUsername(username);
         setPassword(password);
+        for (UserRoles ur : userRoles)
+        {
+            ur.setUser(this);
+        }
+        this.userroles = userRoles;
     }
 
     public long getUserid()
@@ -78,6 +89,16 @@ public class User extends Auditable
         this.password = password;
     }
 
+    public List<UserRoles> getUserroles()
+    {
+        return userroles;
+    }
+
+    public void setUserroles(List<UserRoles> userroles)
+    {
+        this.userroles = userroles;
+    }
+
     public List<Useremail> getUseremails()
     {
         return useremails;
@@ -88,9 +109,24 @@ public class User extends Auditable
         this.useremails = useremails;
     }
 
+    public List<SimpleGrantedAuthority> getAuthority()
+    {
+        List<SimpleGrantedAuthority> rtnList = new ArrayList<>();
+
+        for (UserRoles r : this.userroles)
+        {
+            String myRole = "ROLE_" + r.getRole()
+                    .getName()
+                    .toUpperCase();
+            rtnList.add(new SimpleGrantedAuthority(myRole));
+        }
+
+        return rtnList;
+    }
+
     @Override
     public String toString()
     {
-        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", password='" + password + '\'' + ", useremails=" + useremails + '}';
+        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", password='" + password + '\'' + ", userRoles=" + userroles + ", useremails=" + useremails + '}';
     }
 }

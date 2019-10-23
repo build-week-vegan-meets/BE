@@ -1,10 +1,14 @@
 package com.lambdaschool.veganmeets.services;
 
+    import com.lambdaschool.veganmeets.VeganMeetsApplication;
+import com.lambdaschool.veganmeets.VeganMeetsApplication;
 import com.lambdaschool.veganmeets.exceptions.ResourceFoundException;
 import com.lambdaschool.veganmeets.exceptions.ResourceNotFoundException;
+import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
+import com.lambdaschool.veganmeets.models.UserRoles;
 import com.lambdaschool.veganmeets.models.Useremail;
-import com.lambdaschool.veganmeets.VeganMeetsApplication;
+import com.lambdaschool.veganmeets.services.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
