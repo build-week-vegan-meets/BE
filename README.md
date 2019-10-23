@@ -10,6 +10,7 @@
 ## API DOCUMENTATION CAN BE FOUND HERE: 
 https://vegan-meets.herokuapp.com/swagger-ui.html#/
 
+
 ## Author
 
 :grinning: **Shelby Diamond**
