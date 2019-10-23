@@ -7,6 +7,8 @@
 
 > Share with others the great Vegan food you find! You can upload an image, share a new resturant, and more!
 
+## API DOCUMENTATION CAN BE FOUND HERE: 
+https://vegan-meets.herokuapp.com/swagger-ui.html#/
 
 
 ## Author
