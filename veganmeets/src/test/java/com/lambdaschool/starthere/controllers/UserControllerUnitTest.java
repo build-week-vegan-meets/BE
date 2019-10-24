@@ -1,6 +1,7 @@
-package com.lambdaschool.veganmeets.controllers;
+package com.lambdaschool.starthere.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lambdaschool.veganmeets.controllers.UserController;
 import com.lambdaschool.veganmeets.models.Role;
 import com.lambdaschool.veganmeets.models.User;
 import com.lambdaschool.veganmeets.models.UserRoles;
@@ -60,14 +61,14 @@ public class UserControllerUnitTest
         admins.add(new UserRoles(new User(), r1));
         admins.add(new UserRoles(new User(), r2));
         admins.add(new UserRoles(new User(), r3));
-        User u1 = new User("admin", "ILuvM4th!", admins);
+        User u1 = new User("admin", "ILuvM4th!", "admin@email.local", admins);
 
         u1.getUseremails()
-          .add(new Useremail(u1, "admin@email.local"));
+                .add(new Useremail(u1, "admin@email.local"));
         u1.getUseremails().get(0).setUseremailid(10);
 
         u1.getUseremails()
-          .add(new Useremail(u1, "admin@mymail.local"));
+                .add(new Useremail(u1, "admin@mymail.local"));
         u1.getUseremails().get(1).setUseremailid(11);
 
         u1.setUserid(101);
@@ -77,18 +78,18 @@ public class UserControllerUnitTest
         ArrayList<UserRoles> datas = new ArrayList<>();
         datas.add(new UserRoles(new User(), r3));
         datas.add(new UserRoles(new User(), r2));
-        User u2 = new User("cinnamon", "1234567", datas);
+        User u2 = new User("cinnamon", "1234567", "cinnamon@mymail.local", datas);
 
         u2.getUseremails()
-          .add(new Useremail(u2, "cinnamon@mymail.local"));
+                .add(new Useremail(u2, "cinnamon@mymail.local"));
         u2.getUseremails().get(0).setUseremailid(20);
 
         u2.getUseremails()
-          .add(new Useremail(u2, "hops@mymail.local"));
+                .add(new Useremail(u2, "hops@mymail.local"));
         u2.getUseremails().get(1).setUseremailid(21);
 
         u2.getUseremails()
-          .add(new Useremail(u2, "bunny@email.local"));
+                .add(new Useremail(u2, "bunny@email.local"));
         u2.getUseremails().get(2).setUseremailid(22);
 
         u2.setUserid(102);
@@ -97,10 +98,10 @@ public class UserControllerUnitTest
         // user
         ArrayList<UserRoles> users = new ArrayList<>();
         users.add(new UserRoles(new User(), r1));
-        User u3 = new User("testingbarn", "ILuvM4th!", users);
+        User u3 = new User("testingbarn", "ILuvM4th!", "barnbarn@email.local", users);
 
         u3.getUseremails()
-          .add(new Useremail(u3, "barnbarn@email.local"));
+                .add(new Useremail(u3, "barnbarn@email.local"));
         u3.getUseremails().get(0).setUseremailid(30);
 
         u3.setUserid(103);
@@ -108,13 +109,13 @@ public class UserControllerUnitTest
 
         users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u4 = new User("testingcat", "password", users);
+        User u4 = new User("testingcat", "password", "barnbarn@email.local", users);
         u4.setUserid(104);
         userList.add(u4);
 
         users = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u5 = new User("testingdog", "password", users);
+        User u5 = new User("testingdog", "password", "barnbarn@email.local", users);
         u5.setUserid(105);
         userList.add(u5);
 
@@ -240,8 +241,8 @@ public class UserControllerUnitTest
         Mockito.when(userService.save(any(User.class))).thenReturn(u1);
 
         RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
-                                                  .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-                                                  .content(userString);
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .content(userString);
 
         mockMvc.perform(rb).andExpect(status().isCreated()).andDo(MockMvcResultHandlers.print());
     }
@@ -265,8 +266,8 @@ public class UserControllerUnitTest
         String userString = mapper.writeValueAsString(u1);
 
         RequestBuilder rb = MockMvcRequestBuilders.put(apiUrl, 100L)
-                                                  .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-                                                  .content(userString);
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .content(userString);
 
         mockMvc.perform(rb).andExpect(status().is2xxSuccessful()).andDo(MockMvcResultHandlers.print());
     }
@@ -277,11 +278,11 @@ public class UserControllerUnitTest
         String apiUrl = "/users/user/{userid}";
 
         RequestBuilder rb = MockMvcRequestBuilders.delete(apiUrl, "3")
-                                                  .contentType(MediaType.APPLICATION_JSON)
-                                                  .accept(MediaType.APPLICATION_JSON);
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(rb)
-               .andExpect(status().is2xxSuccessful())
-               .andDo(MockMvcResultHandlers.print());
+                .andExpect(status().is2xxSuccessful())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
@@ -290,11 +291,11 @@ public class UserControllerUnitTest
         String apiUrl = "/users/user/{userid}/role/{roleid}";
 
         RequestBuilder rb = MockMvcRequestBuilders.delete(apiUrl, 3, 2)
-                                                  .contentType(MediaType.APPLICATION_JSON)
-                                                  .accept(MediaType.APPLICATION_JSON);
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
         mockMvc.perform(rb)
-               .andExpect(status().is2xxSuccessful())
-               .andDo(MockMvcResultHandlers.print());
+                .andExpect(status().is2xxSuccessful())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     // @PostMapping("/user/{userid}/role/{roleid}")

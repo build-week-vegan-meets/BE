@@ -1,6 +1,6 @@
-package com.lambdaschool.veganmeets.services;
+package com.lambdaschool.starthere.services;
 
-    import com.lambdaschool.veganmeets.VeganMeetsApplication;
+import com.lambdaschool.veganmeets.VeganMeetsApplication;
 import com.lambdaschool.veganmeets.VeganMeetsApplication;
 import com.lambdaschool.veganmeets.exceptions.ResourceFoundException;
 import com.lambdaschool.veganmeets.exceptions.ResourceNotFoundException;
@@ -111,9 +111,9 @@ public class UserServiceImplUnitTest
     public void F_save()
     {
         ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("tiger", "ILuvMath!", datas);
+        User u2 = new User("tiger", "ILuvMath!", "tiger@tiger.local", datas);
         u2.getUseremails()
-          .add(new Useremail(u2, "tiger@tiger.local"));
+                .add(new Useremail(u2, "tiger@tiger.local"));
 
         User saveU2 = userService.save(u2);
 
@@ -128,9 +128,9 @@ public class UserServiceImplUnitTest
     public void FA_saveResourceFound()
     {
         ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "ILuvMath!", datas);
+        User u2 = new User("cinnamon", "ILuvMath!", "tiger@tiger.local", datas);
         u2.getUseremails()
-          .add(new Useremail(u2, "tiger@tiger.local"));
+                .add(new Useremail(u2, "tiger@tiger.local"));
 
         User saveU2 = userService.save(u2);
 
@@ -147,13 +147,13 @@ public class UserServiceImplUnitTest
     public void G_update()
     {
         ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "password", datas);
+        User u2 = new User("cinnamon", "password", "cinnamon@mymail.thump", datas);
         u2.getUseremails()
-          .add(new Useremail(u2, "cinnamon@mymail.thump"));
+                .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
-          .add(new Useremail(u2, "hops@mymail.thump"));
+                .add(new Useremail(u2, "hops@mymail.thump"));
         u2.getUseremails()
-          .add(new Useremail(u2, "bunny@email.thump"));
+                .add(new Useremail(u2, "bunny@email.thump"));
 
         User updatedu2 = userService.update(u2, 7, false);
 
@@ -162,10 +162,10 @@ public class UserServiceImplUnitTest
         System.out.println("*** DATA ***");
 
         int checking = updatedu2.getUseremails()
-                                .size() - 1;
+                .size() - 1;
         assertEquals("bunny@email.thump", updatedu2.getUseremails()
-                                                   .get(checking)
-                                                   .getUseremail());
+                .get(checking)
+                .getUseremail());
     }
 
     @Transactional
@@ -176,14 +176,14 @@ public class UserServiceImplUnitTest
         Role r2 = new Role("user");
 
         ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "password", datas);
+        User u2 = new User("cinnamon", "password", "cinnamon@mymail.thump", datas);
         datas.add(new UserRoles(u2, r2));
         u2.getUseremails()
-          .add(new Useremail(u2, "cinnamon@mymail.thump"));
+                .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
-          .add(new Useremail(u2, "hops@mymail.thump"));
+                .add(new Useremail(u2, "hops@mymail.thump"));
         u2.getUseremails()
-          .add(new Useremail(u2, "bunny@email.thump"));
+                .add(new Useremail(u2, "bunny@email.thump"));
 
         User updatedu2 = userService.update(u2, 7, false);
 
@@ -192,10 +192,10 @@ public class UserServiceImplUnitTest
         System.out.println("*** DATA ***");
 
         int checking = updatedu2.getUseremails()
-                                .size() - 1;
+                .size() - 1;
         assertEquals("bunny@email.thump", updatedu2.getUseremails()
-                                                   .get(checking)
-                                                   .getUseremail());
+                .get(checking)
+                .getUseremail());
     }
 
     @Transactional
@@ -206,13 +206,13 @@ public class UserServiceImplUnitTest
         Role r2 = new Role("user");
 
         ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon", "password", datas);
+        User u2 = new User("cinnamon", "password", "cinnamon@mymail.thump", datas);
         u2.getUseremails()
-          .add(new Useremail(u2, "cinnamon@mymail.thump"));
+                .add(new Useremail(u2, "cinnamon@mymail.thump"));
         u2.getUseremails()
-          .add(new Useremail(u2, "hops@mymail.thump"));
+                .add(new Useremail(u2, "hops@mymail.thump"));
         u2.getUseremails()
-          .add(new Useremail(u2, "bunny@email.thump"));
+                .add(new Useremail(u2, "bunny@email.thump"));
 
         User updatedu2 = userService.update(u2, 8, false);
 
@@ -221,10 +221,10 @@ public class UserServiceImplUnitTest
         System.out.println("*** DATA ***");
 
         int checking = updatedu2.getUseremails()
-                                .size() - 1;
+                .size() - 1;
         assertEquals("bunny@email.thump", updatedu2.getUseremails()
-                                                   .get(checking)
-                                                   .getUseremail());
+                .get(checking)
+                .getUseremail());
     }
 
     @Test (expected = ResourceNotFoundException.class)

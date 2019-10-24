@@ -19,7 +19,7 @@ public class ResturantDao {
             {
                 put(1, new Resturant(1, "Shelby's Resturant", "123 address Here", "805-795-7709", "8-5"));
                 put(2, new Resturant(2, "Josh's Resturant", "456 address Here", "805-795-7708", "8-6"));
-                put(3, new Resturant(3, "Mom's Resturant", "789 address Here", "805-795-7707", "8-4"));
+                put(3, new Resturant(3, "Mommy's Resturant", "789 address Here", "805-795-7707", "8-4"));
                 put(4, new Resturant(4, "Remy's Resturant", "654 address Here", "805-795-7752", "8-3"));
                 put(5, new Resturant(5, "Bentley's Resturant", "321 address Here", "805-795-8521", "12-5"));
             }
