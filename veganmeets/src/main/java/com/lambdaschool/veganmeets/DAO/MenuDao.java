@@ -18,11 +18,11 @@ public class MenuDao {
     static{
         menus = new HashMap<Integer, Menu>(){
             {
-                put(1, new Menu(1, "Menu Item", "123 address Here", "805-795-7709", "1"));
-                put(2, new Menu(2, "Josh's Resturant", "456 address Here", "805-795-7708", "1"));
-                put(3, new Menu(3, "Mom's Resturant", "789 address Here", "805-795-7707", "1"));
-                put(4, new Menu(4, "Remy's Resturant", "654 address Here", "805-795-7752", "1"));
-                put(5, new Menu(5, "Bentley's Resturant", "321 address Here", "805-795-8521", "1"));
+                put(1, new Menu(1, "Menu Item 1", "describe the food", "805", "1"));
+                put(2, new Menu(2, "Menu Item 2", "describe the food", "795", "1"));
+                put(3, new Menu(3, "Menu Item 3", "describe the food", "707", "1"));
+                put(4, new Menu(4, "Menu Item 4", "describe the food", "892", "2"));
+                put(5, new Menu(5, "Menu Item 5", "describe the food", "551", "2"));
             }
         };
     }
